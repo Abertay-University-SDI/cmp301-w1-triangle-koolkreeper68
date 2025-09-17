@@ -7,6 +7,7 @@ cbuffer MatrixBuffer : register(b0)
 	matrix worldMatrix;
 	matrix viewMatrix;
 	matrix projectionMatrix;
+	
 };
 
 struct InputType
@@ -31,8 +32,10 @@ OutputType main(InputType input)
 	// Calculate the position of the vertex against the world, view, and projection matrices.
 	output.position = mul(input.position, worldMatrix);
 	output.position = mul(output.position, viewMatrix);
-	output.position = mul(output.position, projectionMatrix);
+    output.position = mul(output.position, projectionMatrix);
 
+    output.position = output.position * float4(2.0f,2.0f,1.0f,1.0f);
+	
 	output.colour = input.colour;
 	
 
